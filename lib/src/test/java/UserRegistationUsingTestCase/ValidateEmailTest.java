@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -45,7 +46,11 @@ public class ValidateEmailTest {
 	public void givenEmail_WhenValidShouldReturnTrue()
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
-		boolean result = registationValidator.emailRegex(this.emailTest);
-		Assert.assertEquals(this.expectedResult, result);
+		boolean result;
+		try {
+			result = registationValidator.emailRegex(this.emailTest);
+			Assert.assertEquals(this.expectedResult, result);
+		} catch (UserRegistrationException e) {
+		}
 	}
 }
