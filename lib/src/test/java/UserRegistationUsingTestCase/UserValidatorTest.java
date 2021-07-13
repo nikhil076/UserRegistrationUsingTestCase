@@ -4,7 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class UserValidatorTest {
+public class UserValidatorTest 
+{
 	
 
 	//Test case to validate First Name

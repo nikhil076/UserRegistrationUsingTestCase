@@ -3,7 +3,8 @@ package UserRegistationUsingTestCase;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserRegistationValidator {
+public class UserRegistationValidator 
+{
 
 	public boolean firstNameRegex(String firstName) throws UserRegistrationException 
 	{
@@ -14,7 +15,8 @@ public class UserRegistationValidator {
 			Matcher matched = pattern.matcher(firstName);
 			return matched.matches();
 		}
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			throw new UserRegistrationException("Please Enter a valid First Name");
 		}
 	}
@@ -28,7 +30,8 @@ public class UserRegistationValidator {
 			Matcher matched = pattern.matcher(lastName);
 			return matched.matches();
 		}
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			throw new UserRegistrationException("Please Enter a valid Last Name");
 		}
 	}
@@ -42,7 +45,8 @@ public class UserRegistationValidator {
 			Matcher matched = pattern.matcher(email);
 			return matched.matches();
 		}
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			throw new UserRegistrationException("Please Enter a valid email");
 		}
 	}
@@ -56,12 +60,14 @@ public class UserRegistationValidator {
 			Matcher matched = pattern.matcher(phoneNumber);
 			return matched.matches();
 		}
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			throw new UserRegistrationException("Please Enter a valid phone number");
 		}
 	}
 
-	public boolean passwordRegex(String password) throws UserRegistrationException {
+	public boolean passwordRegex(String password) throws UserRegistrationException 
+	{
 		try
 		{
 			String passwordRegex = "(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}";
@@ -69,7 +75,8 @@ public class UserRegistationValidator {
 			Matcher matched = pattern.matcher(password);
 			return matched.matches();
 		}
-		catch (Exception e) {
+		catch (Exception e) 
+		{
 			throw new UserRegistrationException("Please Enter a valid password");
 		}
 	}
