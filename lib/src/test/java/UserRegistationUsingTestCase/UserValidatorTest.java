@@ -54,5 +54,14 @@ public class UserValidatorTest {
 		boolean result = registationValidator.lastNameRegex("Arv!nd");
 		Assert.assertEquals(false, result);
 	}
+	
+	//Test case for password
+	@Test
+	public void givenPassword_WhenItsValid_ShouldReturnTrue()
+	{
+		UserRegistationValidator registationValidator = new UserRegistationValidator();
+		boolean result = registationValidator.passwordRegex("Nikhil@123");
+		Assert.assertEquals(true, result);
+	}
 }
 
