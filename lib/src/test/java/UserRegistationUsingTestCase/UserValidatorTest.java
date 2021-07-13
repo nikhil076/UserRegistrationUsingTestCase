@@ -73,7 +73,7 @@ public class UserValidatorTest {
 	}
 	
 	@Test
-	public void givenPassword_WhenNumberCharNotUsed_ShouldReturnTrue()
+	public void givenPassword_WhenNumberNotUsed_ShouldReturnTrue()
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result = registationValidator.passwordRegex("Nikhil@arv");
