@@ -63,5 +63,37 @@ public class UserValidatorTest {
 		boolean result = registationValidator.passwordRegex("Nikhil@123");
 		Assert.assertEquals(true, result);
 	}
+	
+	@Test
+	public void givenPassword_WhenSpecialCharNotUsed_ShouldReturnTrue()
+	{
+		UserRegistationValidator registationValidator = new UserRegistationValidator();
+		boolean result = registationValidator.passwordRegex("Nikhil123");
+		Assert.assertEquals(false, result);
+	}
+	
+	@Test
+	public void givenPassword_WhenNumberCharNotUsed_ShouldReturnTrue()
+	{
+		UserRegistationValidator registationValidator = new UserRegistationValidator();
+		boolean result = registationValidator.passwordRegex("Nikhil@arv");
+		Assert.assertEquals(false, result);
+	}
+	
+	@Test
+	public void givenPassword_WhenMiminim8CharIsNotEntered_ShouldReturnTrue()
+	{
+		UserRegistationValidator registationValidator = new UserRegistationValidator();
+		boolean result = registationValidator.passwordRegex("Nik@12");
+		Assert.assertEquals(false, result);
+	}
+	
+	@Test
+	public void givenPassword_WhenOneUpperCaseCharIsNotEntered_ShouldReturnTrue()
+	{
+		UserRegistationValidator registationValidator = new UserRegistationValidator();
+		boolean result = registationValidator.passwordRegex("nikhil@123");
+		Assert.assertEquals(false, result);
+	}
 }
 
