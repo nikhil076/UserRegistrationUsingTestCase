@@ -2,10 +2,16 @@ package UserRegistationUsingTestCase;
 
 public class UserRegistrationException extends Exception
 {
+	public enum ExceptionType
+	{
+		ENTERED_NULL,ENTERED_EMPTY;
+	}
 
-	public UserRegistrationException(String message) 
+	private ExceptionType type;
+	
+	public UserRegistrationException(ExceptionType type , String message) 
 	{
 		super(message);
-		// TODO Auto-generated constructor stub
+		this.type=type;
 	}
 }
