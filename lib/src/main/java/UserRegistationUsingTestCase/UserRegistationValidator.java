@@ -3,6 +3,8 @@ package UserRegistationUsingTestCase;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import UserRegistationUsingTestCase.UserRegistrationException.ExceptionType;
+
 public class UserRegistationValidator 
 {
 
@@ -17,7 +19,7 @@ public class UserRegistationValidator
 		}
 		catch (Exception e) 
 		{
-			throw new UserRegistrationException("Please Enter a valid First Name");
+			throw new UserRegistrationException(ExceptionType.ENTERED_NULL , "Please Enter a valid First Name");
 		}
 	}
 
@@ -32,7 +34,7 @@ public class UserRegistationValidator
 		}
 		catch (Exception e) 
 		{
-			throw new UserRegistrationException("Please Enter a valid Last Name");
+			throw new UserRegistrationException(ExceptionType.ENTERED_NULL ,"Please Enter a valid Last Name");
 		}
 	}
 
@@ -47,7 +49,7 @@ public class UserRegistationValidator
 		}
 		catch (Exception e) 
 		{
-			throw new UserRegistrationException("Please Enter a valid email");
+			throw new UserRegistrationException(ExceptionType.ENTERED_NULL ,"Please Enter a valid email");
 		}
 	}
 
@@ -62,7 +64,7 @@ public class UserRegistationValidator
 		}
 		catch (Exception e) 
 		{
-			throw new UserRegistrationException("Please Enter a valid phone number");
+			throw new UserRegistrationException(ExceptionType.ENTERED_NULL ,"Please Enter a valid phone number");
 		}
 	}
 
@@ -77,7 +79,7 @@ public class UserRegistationValidator
 		}
 		catch (Exception e) 
 		{
-			throw new UserRegistrationException("Please Enter a valid password");
+			throw new UserRegistrationException(ExceptionType.ENTERED_NULL ,"Please Enter a valid password");
 		}
 	}
 
