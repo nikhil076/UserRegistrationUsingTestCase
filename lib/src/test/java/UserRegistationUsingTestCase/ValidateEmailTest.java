@@ -43,14 +43,11 @@ public class ValidateEmailTest {
 	}
 	
 	@Test
-	public void givenEmail_WhenValidShouldReturnTrue()
+	public void givenEmail_WhenValidShouldReturnTrue() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			result = registationValidator.emailRegex(this.emailTest);
-			Assert.assertEquals(this.expectedResult, result);
-		} catch (UserRegistrationException e) {
-		}
+		result = registationValidator.validatorDetails.validator(this.emailTest, "([a-zA-Z]{3,}([.|_|+|-]?[a-zA-Z0-9]+)?[@][a-zA-Z0-9]+[.][a-zA-Z]{2,3}([.]?[a-zA-Z]{2,3})?)$");
+		Assert.assertEquals(this.expectedResult, result);
 	}
 }

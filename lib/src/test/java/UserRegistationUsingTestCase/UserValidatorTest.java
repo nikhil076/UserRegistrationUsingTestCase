@@ -10,104 +10,83 @@ public class UserValidatorTest
 
 	//Test case to validate First Name
 	@Test
-	public void givenFirstName_WhenItIsValid_ShouldReturnTrue()
+	public void givenFirstName_WhenItIsValid_ShouldReturnTrue() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			result = registationValidator.firstNameRegex("Nikhil");
-			Assert.assertEquals(true, result);
-		} catch (UserRegistrationException e) {
-		}
+		result = registationValidator.validatorDetails.validator("Nikhil", "^[A-Z][a-z]{2,}");
+		Assert.assertEquals(true, result);
 	}
 	
 	@Test
-	public void givenFirstName_WhenItIsLessThan3Char_ShouldReturnFalse() 
+	public void givenFirstName_WhenItIsLessThan3Char_ShouldReturnFalse() throws UserRegistrationException 
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			ExpectedException exception = ExpectedException.none();
-			exception.expect(UserRegistrationException.class);
-			exception.expectMessage("First name should be greater than 3 characters");
-			result = registationValidator.firstNameRegex("Ni");
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-		}
+		ExpectedException exception = ExpectedException.none();
+		exception.expect(UserRegistrationException.class);
+		exception.expectMessage("First name should be greater than 3 characters");
+		result = registationValidator.validatorDetails.validator("Ni", "^[A-Z][a-z]{2,}");
+		Assert.assertEquals(false, result);
 	}
 	
 	@Test
-	public void givenFirstName_WhenitsSpecailChar_ShouldReturnFalse()
+	public void givenFirstName_WhenitsSpecailChar_ShouldReturnFalse() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			ExpectedException exception = ExpectedException.none();
-			exception.expect(UserRegistrationException.class);
-			exception.expectMessage("First name should not have special characters");
-			result = registationValidator.firstNameRegex("NikH!l");
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-		}
+		ExpectedException exception = ExpectedException.none();
+		exception.expect(UserRegistrationException.class);
+		exception.expectMessage("First name should not have special characters");
+		result = registationValidator.validatorDetails.validator("N!kH!l", "^[A-Z][a-z]{2,}");
+		Assert.assertEquals(false, result);
 	}
 	
 	// To handle null pointer exception
 	@Test
-	public void givenNullFirstName_ShouldReturnFalse()
+	public void givenNullFirstName_ShouldReturnFalse() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result = false;
-		try {
-			ExpectedException exception = ExpectedException.none();
-			exception.expect(UserRegistrationException.class);
-			exception.expectMessage("First name should not be null");
-			result = registationValidator.firstNameRegex(null);
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-		}
+		ExpectedException exception = ExpectedException.none();
+		exception.expect(UserRegistrationException.class);
+		exception.expectMessage("First name should not be null");
+		result = registationValidator.validatorDetails.validator("", "^[A-Z][a-z]{2,}");
+		Assert.assertEquals(false, result);
 	}
 	
 	//Test case to validate Last Name
 	@Test
-	public void givenLastName_WhenItsValid_ShouldReturnTrue()
+	public void givenLastName_WhenItsValid_ShouldReturnTrue() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			result = registationValidator.lastNameRegex("Arvind");
-			Assert.assertEquals(true, result);
-		} catch (UserRegistrationException e) {
-		}
+		result = registationValidator.validatorDetails.validator("Arvind", "^[A-Z][a-z]{2,}");
+		Assert.assertEquals(true, result);
 	}
 	
 	@Test
-	public void givenLastName_WhenItIsLessThan3Char_ShouldReturnFalse() 
+	public void givenLastName_WhenItIsLessThan3Char_ShouldReturnFalse() throws UserRegistrationException 
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			ExpectedException exception = ExpectedException.none();
-			exception.expect(UserRegistrationException.class);
-			exception.expectMessage("Last name should be greater than 3 characters");
-			result = registationValidator.lastNameRegex("Av");
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-		}
+		ExpectedException exception = ExpectedException.none();
+		exception.expect(UserRegistrationException.class);
+		exception.expectMessage("Last name should be greater than 3 characters");
+		result = registationValidator.validatorDetails.validator("Av", "^[A-Z][a-z]{2,}");
+		Assert.assertEquals(false, result);
 	}
 	
 	@Test
-	public void givenLastName_WhenitsSpecailChar_ShouldReturnFalse()
+	public void givenLastName_WhenitsSpecailChar_ShouldReturnFalse() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			ExpectedException exception = ExpectedException.none();
-			exception.expect(UserRegistrationException.class);
-			exception.expectMessage("Last name should not have special characters");
-			result = registationValidator.lastNameRegex("Arv!nd");
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-		}
+		ExpectedException exception = ExpectedException.none();
+		exception.expect(UserRegistrationException.class);
+		exception.expectMessage("Last name should not have special characters");
+		result = registationValidator.validatorDetails.validator("Arv!nd", "^[A-Z][a-z]{2,}");
+		Assert.assertEquals(false, result);
 	}
 	
 	//Test case to validate password
@@ -117,7 +96,7 @@ public class UserValidatorTest
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
 		try {
-			result = registationValidator.passwordRegex("Nikhil@123");
+			result = registationValidator.validatorDetails.validator("Nikhil@123", "(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}");
 			Assert.assertEquals(true, result);
 		}
 		catch (Exception e) {
@@ -125,66 +104,48 @@ public class UserValidatorTest
 	}
 	
 	@Test
-	public void givenPassword_WhenSpecialCharNotUsed_ShouldReturnTrue()
+	public void givenPassword_WhenSpecialCharNotUsed_ShouldReturnTrue() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			result = registationValidator.passwordRegex("Nikhil123");
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-		}
+		result = registationValidator.validatorDetails.validator("Nikhil123", "(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}");
+		Assert.assertEquals(false, result);
 	}
 	
 	@Test
-	public void givenPassword_WhenNumberNotUsed_ShouldReturnTrue()
+	public void givenPassword_WhenNumberNotUsed_ShouldReturnTrue() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			result = registationValidator.passwordRegex("Nikhil@arv");
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-		}
+		result = registationValidator.validatorDetails.validator("Nikhil@arv", "(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}");
+		Assert.assertEquals(false, result);
 	}
 	
 	@Test
-	public void givenPassword_WhenMiminim8CharIsNotEntered_ShouldReturnTrue()
+	public void givenPassword_WhenMiminim8CharIsNotEntered_ShouldReturnTrue() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			result = registationValidator.passwordRegex("Nik@12");
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+		result = registationValidator.validatorDetails.validator("Nik@12", "(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}");
+		Assert.assertEquals(false, result);	
 	}
 	
 	@Test
-	public void givenPassword_WhenOneUpperCaseCharIsNotEntered_ShouldReturnTrue()
+	public void givenPassword_WhenOneUpperCaseCharIsNotEntered_ShouldReturnTrue() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			result = registationValidator.passwordRegex("nikhil@123");
-			Assert.assertEquals(false, result);
-		} catch (UserRegistrationException e) {
-			e.printStackTrace();
-		}
+		result = registationValidator.validatorDetails.validator("nikhil@123", "(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}");
+		Assert.assertEquals(false, result);
 	}
 	
 	@Test
-	public void givenNumber_WhenValid_ShouldReturnTrue()
+	public void givenNumber_WhenValid_ShouldReturnTrue() throws UserRegistrationException
 	{
 		UserRegistationValidator registationValidator = new UserRegistationValidator();
 		boolean result;
-		try {
-			result = registationValidator.phoneNumberRegex("91 7066889759");
-			Assert.assertEquals(true, result);
-		} catch (UserRegistrationException e) {
-		}
+		result = registationValidator.validatorDetails.validator("91 7066889759", "^[0-9]{1,3}[' '][0-9]{10}$");
+		Assert.assertEquals(true, result);
 	}
 }
 
